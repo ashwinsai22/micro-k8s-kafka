@@ -16,7 +16,7 @@ spec:
       containers:
         - name: payment
           image: ashwinsai22/payment-service:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 8000
           env:

@@ -16,6 +16,6 @@ spec:
       containers:
         - name: client
           image: ashwinsai22/client:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000

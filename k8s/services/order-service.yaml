@@ -16,7 +16,7 @@ spec:
       containers:
         - name: order
           image: ashwinsai22/order-service:latest
-          imagePullPolicy: IfNotPresent
+          imagePullPolicy: Always
           ports:
             - containerPort: 3000
           env:
