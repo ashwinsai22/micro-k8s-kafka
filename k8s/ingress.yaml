@@ -5,6 +5,8 @@ metadata:
   namespace: microkafka
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: public
   tls:
@@ -15,6 +17,7 @@ spec:
     - host: microkafka.bezawada.link
       http:
         paths:
+          # Frontend
           - path: /
             pathType: Prefix
             backend:
@@ -23,7 +26,8 @@ spec:
                 port:
                   number: 80
 
-          - path: /payment-service
+          # Payment
+          - path: /payment-service(/|$)(.*)
             pathType: Prefix
             backend:
               service:
@@ -31,7 +35,8 @@ spec:
                 port:
                   number: 80
 
-          - path: /order-service
+          # Order
+          - path: /order-service(/|$)(.*)
             pathType: Prefix
             backend:
               service:
@@ -39,7 +44,8 @@ spec:
                 port:
                   number: 80
 
-          - path: /email-service
+          # Email
+          - path: /email-service(/|$)(.*)
             pathType: Prefix
             backend:
               service:
@@ -47,7 +53,8 @@ spec:
                 port:
                   number: 80
 
-          - path: /analytic-service
+          # Analytics
+          - path: /analytic-service(/|$)(.*)
             pathType: Prefix
             backend:
               service:
@@ -55,7 +62,8 @@ spec:
                 port:
                   number: 80
 
-          - path: /kafka-ui
+          # Kafka UI
+          - path: /kafka-ui(/|$)(.*)
             pathType: Prefix
             backend:
               service:
