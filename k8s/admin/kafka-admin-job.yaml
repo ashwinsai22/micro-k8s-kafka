@@ -10,8 +10,18 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: kafka-admin
-          image: ashwinsai22/kafka-admin:latest
-          imagePullPolicy: Always
+          image: confluentinc/cp-kafka:7.6.0
+          imagePullPolicy: IfNotPresent
+          command:
+            - bash
+            - -ec
+            - |
+              echo "Waiting for Kafka..."
+              sleep 20
+              node admin.js
           env:
             - name: KAFKA_BROKERS
-              value: kafka-0.kafka.microkafka.svc.cluster.local:9092,kafka-1.kafka.microkafka.svc.cluster.local:9092,kafka-2.kafka.microkafka.svc.cluster.local:9092
+              value: >
+                kafka-0.kafka.microkafka.svc.cluster.local:9092,
+                kafka-1.kafka.microkafka.svc.cluster.local:9092,
+                kafka-2.kafka.microkafka.svc.cluster.local:9092
