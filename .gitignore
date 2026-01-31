@@ -3,3 +3,133 @@
 .DS_Store
 
 .env*
+
+
+
+> analytic-service@1.0.0 start
+> node index.js
+
+{"level":"ERROR","timestamp":"2026-01-31T14:56:31.818Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"analytic-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:56:31.821Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":0,"retryTime":314}
+{"level":"ERROR","timestamp":"2026-01-31T14:56:32.142Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"analytic-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:56:32.143Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":1,"retryTime":660}
+{"level":"ERROR","timestamp":"2026-01-31T14:56:32.808Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"analytic-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:56:32.809Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":2,"retryTime":1450}
+{"level":"ERROR","timestamp":"2026-01-31T14:56:34.264Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"analytic-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:56:34.265Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":3,"retryTime":2600}
+{"level":"ERROR","timestamp":"2026-01-31T14:56:36.871Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"analytic-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:56:36.872Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":4,"retryTime":6206}
+{"level":"ERROR","timestamp":"2026-01-31T14:56:43.087Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"analytic-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:56:43.088Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":5,"retryTime":12416}
+KafkaJSNonRetriableError
+  Caused by: KafkaJSConnectionError: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap
+    at Socket.onError (/app/node_modules/kafkajs/src/network/connection.js:210:23)
+    ... 3 lines matching cause stack trace ...
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  name: 'KafkaJSNumberOfRetriesExceeded',
+  retriable: false,
+  helpUrl: undefined,
+  retryCount: 5,
+  retryTime: 12416,
+  [cause]: KafkaJSConnectionError: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap
+      at Socket.onError (/app/node_modules/kafkajs/src/network/connection.js:210:23)
+      at Socket.emit (node:events:517:28)
+      at emitErrorNT (node:internal/streams/destroy:151:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+    retriable: true,
+    helpUrl: undefined,
+    broker: 'kafka-kafka-bootstrap:9092',
+    code: 'ENOTFOUND',
+    [cause]: undefined
+  }
+}
+
+
+
+client--> container "client" in pod "client-service-57c6b95cbf-8qffx" is waiting to start: trying and failing to pull image
+
+
+
+> email-service@1.0.0 start
+> node index.js
+
+{"level":"WARN","timestamp":"2026-01-31T14:57:22.582Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:22.607Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"email-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:22.609Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":0,"retryTime":316}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:22.931Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"email-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:22.936Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":1,"retryTime":538}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:23.478Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"email-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:23.479Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":2,"retryTime":1092}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:24.577Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"email-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:24.579Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":3,"retryTime":1794}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:26.378Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"email-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:26.380Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":4,"retryTime":3312}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:29.702Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"email-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:29.712Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":5,"retryTime":6548}
+KafkaJSNonRetriableError
+  Caused by: KafkaJSConnectionError: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap
+    at Socket.onError (/app/node_modules/kafkajs/src/network/connection.js:210:23)
+    ... 3 lines matching cause stack trace ...
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  name: 'KafkaJSNumberOfRetriesExceeded',
+  retriable: false,
+  helpUrl: undefined,
+  retryCount: 5,
+  retryTime: 6548,
+  [cause]: KafkaJSConnectionError: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap
+      at Socket.onError (/app/node_modules/kafkajs/src/network/connection.js:210:23)
+      at Socket.emit (node:events:517:28)
+      at emitErrorNT (node:internal/streams/destroy:151:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+    retriable: true,
+    helpUrl: undefined,
+    broker: 'kafka-kafka-bootstrap:9092',
+    code: 'ENOTFOUND',
+    [cause]: undefined
+  }
+}
+
+
+
+
+> order-service@1.0.0 start
+> node index.js
+
+{"level":"WARN","timestamp":"2026-01-31T14:57:32.453Z","logger":"kafkajs","message":"KafkaJS v2.0.0 switched default partitioner. To retain the same partitioning behavior as in previous versions, create the producer with the option \"createPartitioner: Partitioners.LegacyPartitioner\". See the migration guide at https://kafka.js.org/docs/migration-guide-v2.0.0#producer-new-default-partitioner for details. Silence this warning by setting the environment variable \"KAFKAJS_NO_PARTITIONER_WARNING=1\""}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:32.478Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"order-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:32.479Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":0,"retryTime":310}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:32.803Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"order-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:32.809Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":1,"retryTime":618}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:33.431Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"order-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:33.432Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":2,"retryTime":1054}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:34.490Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"order-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:34.492Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":3,"retryTime":2514}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:37.010Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"order-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:37.011Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":4,"retryTime":5400}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:42.416Z","logger":"kafkajs","message":"[Connection] Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","broker":"kafka-kafka-bootstrap:9092","clientId":"order-service","stack":"Error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:107:26)"}
+{"level":"ERROR","timestamp":"2026-01-31T14:57:42.417Z","logger":"kafkajs","message":"[BrokerPool] Failed to connect to seed broker, trying another broker from the list: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap","retryCount":5,"retryTime":9038}
+KafkaJSNonRetriableError
+  Caused by: KafkaJSConnectionError: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap
+    at Socket.onError (/app/node_modules/kafkajs/src/network/connection.js:210:23)
+    ... 3 lines matching cause stack trace ...
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+  name: 'KafkaJSNumberOfRetriesExceeded',
+  retriable: false,
+  helpUrl: undefined,
+  retryCount: 5,
+  retryTime: 9038,
+  [cause]: KafkaJSConnectionError: Connection error: getaddrinfo ENOTFOUND kafka-kafka-bootstrap
+      at Socket.onError (/app/node_modules/kafkajs/src/network/connection.js:210:23)
+      at Socket.emit (node:events:517:28)
+      at emitErrorNT (node:internal/streams/destroy:151:8)
+      at emitErrorCloseNT (node:internal/streams/destroy:116:3)
+      at process.processTicksAndRejections (node:internal/process/task_queues:82:21) {
+    retriable: true,
+    helpUrl: undefined,
+    broker: 'kafka-kafka-bootstrap:9092',
+    code: 'ENOTFOUND',
+    [cause]: undefined
+  }
+}
