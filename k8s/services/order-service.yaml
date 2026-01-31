@@ -35,14 +35,16 @@ spec:
                 sleep 3
               done
 
-        echo "✅ Kafka fully ready"
+              echo "✅ Kafka fully ready"
 
       containers:
         - name: order-service
           image: ashwinsai22/order-service:latest
           imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
           env:
             - name: KAFKA_BROKERS
               value: kafka-0.kafka.microkafka.svc.cluster.local:9092
-          ports:
-            - containerPort: 8000
+            - name: KAFKAJS_NO_PARTITIONER_WARNING
+              value: "1"
