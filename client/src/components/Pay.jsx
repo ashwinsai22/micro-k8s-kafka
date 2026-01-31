@@ -11,7 +11,7 @@ const Pay = ({ cart }) => {
   const { isPending, isError, mutate, data } = useMutation({
     mutationFn: async (cart) => {
       const startTime = Date.now();
-      const response = await axios.post("https://microkafka.bezawada.link/payment-service", {
+      const response = await axios.post("https://microkafka-api.bezawada.link/payment-service", {
         cart,
       });
       const endTime = Date.now();

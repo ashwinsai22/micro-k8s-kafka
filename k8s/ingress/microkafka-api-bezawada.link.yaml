@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: microkafka-ingress
+  name: microkafka-api-ingress
   namespace: microkafka
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
@@ -10,17 +10,17 @@ spec:
   ingressClassName: public
   tls:
     - hosts:
-        - microkafka.bezawada.link
-      secretName: microkafka-tls
+        - microkafka-api.bezawada.link
+      secretName: microkafka-api-tls
   rules:
-    - host: microkafka.bezawada.link
+    - host: microkafka-api.bezawada.link
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: client
+                name: payment-service
                 port:
                   number: 80
 
