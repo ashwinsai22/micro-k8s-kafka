@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client
+  namespace: microkafka
+spec:
+  selector:
+    app: client
+  ports:
+    - port: 80
+      targetPort: 3000
