@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: kafka
-          image: confluentinc/kafka:latest
+          image: confluentinc/cp-kafka:7.6.0
           imagePullPolicy: Always
 
           ports:
