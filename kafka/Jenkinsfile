@@ -2,8 +2,7 @@ pipeline {
   agent any
 
   environment {
-    IMAGE_NAME = "ashwinsai22/kafka-admin"
-    IMAGE_TAG  = "latest"
+    IMAGE = "ashwinsai22/kafka-admin:latest"
   }
 
   stages {
@@ -13,34 +12,30 @@ pipeline {
       }
     }
 
-    stage('Build Image') {
+    stage('Build') {
       steps {
         sh '''
-          cd kafka-admin
-          docker build -t $IMAGE_NAME:$IMAGE_TAG .
+          cd kafka
+          docker build -t $IMAGE .
         '''
       }
     }
 
-    stage('Login to DockerHub') {
+    stage('Docker Login') {
       steps {
         withCredentials([usernamePassword(
           credentialsId: 'dockerhub-creds',
           usernameVariable: 'DOCKER_USER',
           passwordVariable: 'DOCKER_PASS'
         )]) {
-          sh '''
-            echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-          '''
+          sh 'echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin'
         }
       }
     }
 
-    stage('Push Image') {
+    stage('Push') {
       steps {
-        sh '''
-          docker push $IMAGE_NAME:$IMAGE_TAG
-        '''
+        sh 'docker push $IMAGE'
       }
     }
   }
