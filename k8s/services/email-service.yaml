@@ -41,30 +41,10 @@ spec:
         - name: email-service
           image: ashwinsai22/email-service:latest
           imagePullPolicy: Always
-
           ports:
             - containerPort: 8000
-
           env:
             - name: KAFKA_BROKERS
               value: kafka-0.kafka.microkafka.svc.cluster.local:9092
             - name: KAFKAJS_NO_PARTITIONER_WARNING
               value: "1"
-
-          # ✅ VERY IMPORTANT (prevents 503)
-          readinessProbe:
-            httpGet:
-              path: /health
-              port: 8000
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            failureThreshold: 5
-
-          # ✅ Keeps pod healthy
-          livenessProbe:
-            httpGet:
-              path: /health
-              port: 8000
-            initialDelaySeconds: 20
-            periodSeconds: 10
-            failureThreshold: 5
