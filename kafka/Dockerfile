@@ -3,10 +3,8 @@ FROM node:18-alpine
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install --production
+RUN npm install --only=production
 
-COPY admin.js .
-
-ENV NODE_ENV=production
+COPY . .
 
 CMD ["node", "admin.js"]
