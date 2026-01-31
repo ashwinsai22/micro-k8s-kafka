@@ -6,6 +6,7 @@ namespace: microkafka
 resources:
   # Kafka
   - kafka/kafka-headless-svc.yaml
+  - kafka/kafka-service.yaml
   - kafka/kafka-statefulset.yaml
 
   # Kafka admin (topic creation)
