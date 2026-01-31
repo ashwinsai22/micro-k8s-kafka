@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: email
-          image: localhost:32000/email-service:latest
+          image: ashwinsai22/email-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000

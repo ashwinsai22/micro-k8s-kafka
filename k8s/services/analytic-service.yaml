@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: analytic
-          image: localhost:32000/analytic-service:latest
+          image: ashwinsai22/analytic-service:latest
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3000

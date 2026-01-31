@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: kafka
-          image: localhost:32000/cp-kafka:7.6.0
+          image: ashwinsai22/cp-kafka:7.6.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9092

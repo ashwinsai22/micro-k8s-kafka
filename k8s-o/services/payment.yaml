@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: payment
-          image: localhost:32000/payment-service:latest
+          image: ashwinsai22/payment-service:latest
           ports:
             - containerPort: 3000
           env:

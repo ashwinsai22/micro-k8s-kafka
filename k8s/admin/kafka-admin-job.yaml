@@ -10,7 +10,7 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: kafka-admin
-          image: localhost:32000/kafka-service:latest
+          image: ashwinsai22/kafka-service:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: KAFKA_BROKERS
