@@ -54,3 +54,12 @@ spec:
                 name: analytic-service
                 port:
                   number: 80
+          # Kafka UI Service
+          - path: /kafka-ui(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: kafka-ui
+                  port:
+                    number: 80
+
