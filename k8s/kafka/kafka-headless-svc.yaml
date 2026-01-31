@@ -8,7 +8,7 @@ spec:
   selector:
     app: kafka
   ports:
-    - name: kafka
+    - name: broker
       port: 9092
     - name: controller
       port: 9093

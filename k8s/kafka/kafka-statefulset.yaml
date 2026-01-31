@@ -18,32 +18,40 @@ spec:
         - name: kafka
           image: confluentinc/cp-kafka:7.6.0
           imagePullPolicy: IfNotPresent
+
           ports:
             - containerPort: 9092
+              name: broker
             - containerPort: 9093
+              name: controller
 
-          # 🔑 THIS IS THE KEY FIX
+          # 🔑 CRITICAL FIXES (broker.id + advertised.listeners)
           command:
             - bash
             - -ec
             - |
-              export KAFKA_NODE_ID=$(echo ${HOSTNAME} | awk -F'-' '{print $NF}')
-              echo "Starting Kafka with broker.id=${KAFKA_NODE_ID}"
+              export KAFKA_NODE_ID=$(echo "${HOSTNAME}" | awk -F'-' '{print $NF}')
+              export KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOSTNAME}.kafka.microkafka.svc.cluster.local:9092
+
+              echo "================================================="
+              echo "Starting Kafka in KRaft mode"
+              echo "broker.id=${KAFKA_NODE_ID}"
+              echo "advertised.listeners=${KAFKA_ADVERTISED_LISTENERS}"
+              echo "================================================="
+
               exec /etc/confluent/docker/run
 
           env:
-            # Required for KRaft
+            # ----- REQUIRED FOR KRaft -----
             - name: CLUSTER_ID
               value: "7Dvn0OLMQo-bg4qmCmflVg"
 
             - name: KAFKA_PROCESS_ROLES
               value: "broker,controller"
 
+            # ----- LISTENERS -----
             - name: KAFKA_LISTENERS
               value: "PLAINTEXT://:9092,CONTROLLER://:9093"
-
-            - name: KAFKA_ADVERTISED_LISTENERS
-              value: "PLAINTEXT://$(HOSTNAME).kafka.microkafka.svc.cluster.local:9092"
 
             - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
               value: "PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT"
@@ -54,6 +62,7 @@ spec:
             - name: KAFKA_INTER_BROKER_LISTENER_NAME
               value: "PLAINTEXT"
 
+            # ----- CONTROLLER QUORUM (STATIC & VALID) -----
             - name: KAFKA_CONTROLLER_QUORUM_VOTERS
               value: >
                 0@kafka-0.kafka.microkafka.svc.cluster.local:9093,
