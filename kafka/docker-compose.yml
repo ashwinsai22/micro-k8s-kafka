@@ -57,7 +57,7 @@ services:
     networks:
       - kafka-network
   kafka-ui:
-    image: ashwinsai22/kafka-ui:latest
+    image: localhost:32000/kafka-ui:latest
     container_name: kafka-ui
     environment:
       KAFKA_CLUSTERS_0_NAME: local-cluster

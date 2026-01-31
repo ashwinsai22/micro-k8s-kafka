@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: client
-          image: ashwinsai22/client-service:latest
+          image: localhost:32000/client-service:latest
           ports:
             - containerPort: 3000
           env:
