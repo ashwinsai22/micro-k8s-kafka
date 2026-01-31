@@ -13,7 +13,9 @@ app.use(express.json());
 
 const kafka = new Kafka({
   clientId: "payment-service",
-  brokers: [process.env.KAFKA_BROKERS],
+  brokers: process.env.KAFKA_BROKERS
+    ? process.env.KAFKA_BROKERS.split(",")
+    : ["kafka-kafka-bootstrap:9092"],
 });
 
 const producer = kafka.producer();

@@ -2,7 +2,9 @@ import { Kafka } from "kafkajs";
 
 const kafka = new Kafka({
   clientId: "analytic-service",
-brokers: [process.env.KAFKA_BROKERS],
+  brokers: process.env.KAFKA_BROKERS
+    ? process.env.KAFKA_BROKERS.split(",")
+    : ["kafka-kafka-bootstrap:9092"],
 });
 
 const consumer = kafka.consumer({ groupId: "analytic-service" });

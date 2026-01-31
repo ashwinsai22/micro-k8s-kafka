@@ -19,7 +19,7 @@ spec:
           ports:
             - containerPort: 3000
           env:
-            - name: KAFKA_BROKER
+            - name: KAFKA_BROKERS
               value: kafka-kafka-bootstrap:9092
 ---
 apiVersion: v1

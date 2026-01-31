@@ -2,7 +2,9 @@ import { Kafka } from "kafkajs";
 
 const kafka = new Kafka({
   clientId: "email-service",
-brokers: [process.env.KAFKA_BROKERS],
+  brokers: process.env.KAFKA_BROKERS
+    ? process.env.KAFKA_BROKERS.split(",")
+    : ["kafka-kafka-bootstrap:9092"],
 });
 
 const producer = kafka.producer();
