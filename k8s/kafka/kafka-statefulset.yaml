@@ -17,6 +17,8 @@ spec:
       containers:
         - name: kafka
           image: confluentinc/kafka:latest
+          imagePullPolicy: Always
+
           ports:
             - containerPort: 9092
             - containerPort: 9093
