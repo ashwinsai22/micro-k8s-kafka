@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   environment {
-    IMAGE_NAME = "localhost:32000/analytic-service"
+    IMAGE_NAME = "ashwinsai22/analytic-service"
   }
 
   stages {
