@@ -13,29 +13,29 @@ spec:
       labels:
         app: email-service
     spec:
-initContainers:
-  - name: wait-for-kafka
-    image: confluentinc/cp-kafka:7.6.0
-    command:
-      - sh
-      - -c
-      - |
-        echo "⏳ Waiting for Kafka broker..."
-        until kafka-broker-api-versions \
-          --bootstrap-server kafka-0.kafka.microkafka.svc.cluster.local:9092 >/dev/null 2>&1
-        do
-          sleep 3
-        done
+      initContainers:
+        - name: wait-for-kafka
+          image: confluentinc/cp-kafka:7.6.0
+          command:
+            - sh
+            - -c
+            - |
+              echo "⏳ Waiting for Kafka broker..."
+              until kafka-broker-api-versions \
+                --bootstrap-server kafka-0.kafka.microkafka.svc.cluster.local:9092 >/dev/null 2>&1
+              do
+                sleep 3
+              done
 
-        echo "⏳ Waiting for group coordinator..."
-        until kafka-consumer-groups \
-          --bootstrap-server kafka-0.kafka.microkafka.svc.cluster.local:9092 \
-          --list >/dev/null 2>&1
-        do
-          sleep 3
-        done
+              echo "⏳ Waiting for group coordinator..."
+              until kafka-consumer-groups \
+                --bootstrap-server kafka-0.kafka.microkafka.svc.cluster.local:9092 \
+                --list >/dev/null 2>&1
+              do
+                sleep 3
+              done
 
-        echo "✅ Kafka fully ready"
+              echo "✅ Kafka fully ready"
 
       containers:
         - name: email-service
