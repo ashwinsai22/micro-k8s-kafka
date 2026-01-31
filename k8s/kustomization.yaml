@@ -4,27 +4,10 @@ kind: Kustomization
 namespace: microkafka
 
 resources:
-  # Kafka
-  - kafka/kafka-service.yaml
-  - kafka/kafka-headless-svc.yaml
-  - kafka/kafka-statefulset.yaml
-
-  # Kafka admin (topic creation)
-  - admin/kafka-admin-job.yaml
-
-  # Kafka UI
-  - kafka-ui/kafka-ui-deployment.yaml
-  - kafka-ui/kafka-ui-service.yaml
-
-  # Backend services
-  - services/payment-service.yaml
-  - services/order-service.yaml
-  - services/email-service.yaml
-  - services/analytic-service.yaml
-
-  # Frontend
-  - client/client-deployment.yaml
-  - client/client-service.yaml
-
-  # Ingress
+  - namespace.yaml
+  - kafka
+  - admin
+  - kafka-ui
+  - services
+  - client
   - ingress.yaml
