@@ -21,7 +21,7 @@ spec:
             - containerPort: 3000
           env:
             - name: KAFKA_BROKERS
-              value: kafka.kafka.microkafka.svc.cluster.local:9092
+              value: kafka-0.kafka.microkafka.svc.cluster.local:9092
 ---
 apiVersion: v1
 kind: Service

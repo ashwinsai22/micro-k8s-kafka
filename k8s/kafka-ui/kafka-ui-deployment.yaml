@@ -25,4 +25,4 @@ spec:
             - name: KAFKA_CLUSTERS_0_NAME
               value: microkafka
             - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
-              value: kafka.kafka.microkafka.svc.cluster.local:9092
+              value: kafka-0.kafka.microkafka.svc.cluster.local:9092
