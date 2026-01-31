@@ -1,0 +1,66 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: microkafka-ingress
+  namespace: microkafka
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
+spec:
+  rules:
+    - host: microkafka.bezawada.link
+      http:
+        paths:
+          # Payment Service
+          - path: /payment-service(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: payment-service
+                port:
+                  number: 80
+
+          # Order Service
+          - path: /order-service(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: order-service
+                port:
+                  number: 80
+
+          # Email Service
+          - path: /email-service(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: email-service
+                port:
+                  number: 80
+
+          # Analytic Service
+          - path: /analytic-service(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: analytic-service
+                port:
+                  number: 80
+
+          # Kafka UI
+          - path: /kafka-ui(/|$)(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: kafka-ui
+                port:
+                  number: 80
+
+          # Client (Frontend) — KEEP THIS LAST
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: client
+                port:
+                  number: 80

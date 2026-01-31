@@ -13,11 +13,7 @@ app.use(express.json());
 
 const kafka = new Kafka({
   clientId: "payment-service",
-brokers: [
-  "kafka-0.kafka.microkafka.svc.cluster.local:9092",
-  "kafka-1.kafka.microkafka.svc.cluster.local:9092",
-  "kafka-2.kafka.microkafka.svc.cluster.local:9092",
-],
+  brokers: [process.env.KAFKA_BROKERS],
 });
 
 const producer = kafka.producer();

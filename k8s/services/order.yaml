@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: order-service
+  namespace: microkafka
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: order-service
+  template:
+    metadata:
+      labels:
+        app: order-service
+    spec:
+      containers:
+        - name: order
+          image: ashwinsai22/order-service:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: KAFKA_BROKER
+              value: kafka-kafka-bootstrap:9092
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: order-service
+  namespace: microkafka
+spec:
+  selector:
+    app: order-service
+  ports:
+    - port: 80
+      targetPort: 3000

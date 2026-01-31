@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-service
+  namespace: microkafka
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: email-service
+  template:
+    metadata:
+      labels:
+        app: email-service
+    spec:
+      containers:
+        - name: email
+          image: ashwinsai22/email-service:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: KAFKA_BROKER
+              value: kafka-kafka-bootstrap:9092
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: email-service
+  namespace: microkafka
+spec:
+  selector:
+    app: email-service
+  ports:
+    - port: 80
+      targetPort: 3000
