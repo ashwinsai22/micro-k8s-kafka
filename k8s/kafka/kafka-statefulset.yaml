@@ -21,62 +21,32 @@ spec:
 
           ports:
             - containerPort: 9092
-              name: broker
             - containerPort: 9093
-              name: controller
-
-          command:
-            - bash
-            - -ec
-            - |
-              export KAFKA_NODE_ID=$(echo "${HOSTNAME}" | awk -F'-' '{print $NF}')
-              export KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://${HOSTNAME}.kafka.microkafka.svc.cluster.local:9092
-
-              echo "================================================="
-              echo "Starting Kafka in KRaft mode"
-              echo "broker.id=${KAFKA_NODE_ID}"
-              echo "advertised.listeners=${KAFKA_ADVERTISED_LISTENERS}"
-              echo "================================================="
-
-              exec /etc/confluent/docker/run
 
           env:
             - name: CLUSTER_ID
               value: "7Dvn0OLMQo-bg4qmCmflVg"
 
-            - name: KAFKA_CLUSTER_ID
-              value: "7Dvn0OLMQo-bg4qmCmflVg"
-
             - name: KAFKA_PROCESS_ROLES
               value: "broker,controller"
 
-            - name: KAFKA_LISTENERS
-              value: "PLAINTEXT://:9092,CONTROLLER://:9093"
+            - name: KAFKA_NODE_ID
+              value: "0"
 
-            - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
-              value: "PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT"
+            - name: KAFKA_LISTENERS
+              value: "PLAINTEXT://0.0.0.0:9092,CONTROLLER://0.0.0.0:9093"
+
+            - name: KAFKA_ADVERTISED_LISTENERS
+              value: "PLAINTEXT://kafka-0.kafka.microkafka.svc.cluster.local:9092"
 
             - name: KAFKA_CONTROLLER_LISTENER_NAMES
               value: "CONTROLLER"
+
+            - name: KAFKA_LISTENER_SECURITY_PROTOCOL_MAP
+              value: "PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT"
 
             - name: KAFKA_INTER_BROKER_LISTENER_NAME
               value: "PLAINTEXT"
 
             - name: KAFKA_CONTROLLER_QUORUM_VOTERS
-              value: >
-                0@kafka-0.kafka.microkafka.svc.cluster.local:9093
-
-            - name: KAFKA_AUTO_CREATE_TOPICS_ENABLE
-              value: "false"
-
-          readinessProbe:
-            tcpSocket:
-              port: 9092
-            initialDelaySeconds: 20
-            periodSeconds: 10
-
-          livenessProbe:
-            tcpSocket:
-              port: 9092
-            initialDelaySeconds: 30
-            periodSeconds: 10
+              value: "0@kafka-0.kafka.microkafka.svc.cluster.local:9093"
