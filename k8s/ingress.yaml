@@ -5,7 +5,13 @@ metadata:
   namespace: microkafka
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
+  ingressClassName: public
+  tls:
+    - hosts:
+        - microkafka.bezawada.link
+      secretName: microkafka-tls   # 👈 AWS cert secret
   rules:
     - host: microkafka.bezawada.link
       http:
