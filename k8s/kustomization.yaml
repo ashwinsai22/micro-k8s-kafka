@@ -4,7 +4,6 @@ kind: Kustomization
 namespace: microkafka
 
 resources:
-  - namespace.yaml
   - kafka
   - admin
   - kafka-ui
