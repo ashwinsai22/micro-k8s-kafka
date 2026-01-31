@@ -5,20 +5,12 @@ metadata:
   namespace: microkafka
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /$2
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   rules:
     - host: microkafka.bezawada.link
       http:
         paths:
-          # Client (Frontend)
-          - path: /(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: client
-                port:
-                  number: 80
-
           # Payment Service
           - path: /payment-service(/|$)(.*)
             pathType: Prefix
@@ -54,12 +46,21 @@ spec:
                 name: analytic-service
                 port:
                   number: 80
-          # Kafka UI Service
+
+          # Kafka UI
           - path: /kafka-ui(/|$)(.*)
             pathType: Prefix
             backend:
               service:
                 name: kafka-ui
-                  port:
-                    number: 80
+                port:
+                  number: 80
 
+          # Client (Frontend) — KEEP THIS LAST
+          - path: /(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: client
+                port:
+                  number: 80
