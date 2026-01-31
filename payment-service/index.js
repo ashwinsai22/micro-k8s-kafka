@@ -15,7 +15,7 @@ const kafka = new Kafka({
   clientId: "payment-service",
   brokers: process.env.KAFKA_BROKERS
     ? process.env.KAFKA_BROKERS.split(",")
-    : ["kafka-kafka-bootstrap:9092"],
+    : ["kafka-0.kafka.microkafka.svc.cluster.local:9092"],
 });
 
 const producer = kafka.producer();
@@ -25,30 +25,36 @@ const connectToKafka = async () => {
     await producer.connect();
     console.log("Producer connected!");
   } catch (err) {
-    console.log("Error connecting to Kafka", err);
+    console.error("Error connecting to Kafka", err);
   }
 };
 
-app.post("/payment-service", async (req, res) => {
-  const { cart } = req.body;
-  // ASSUME THAT WE GET THE COOKIE AND DECRYPT THE USER ID
-  const userId = "123";
+/**
+ * ✅ IMPORTANT FIX
+ * Ingress forwards /payment-service → /
+ */
+app.post("/", async (req, res, next) => {
+  try {
+    const { cart } = req.body;
+    const userId = "123";
 
-  // TODO:PAYMENT
+    await producer.send({
+      topic: "payment-successful",
+      messages: [{ value: JSON.stringify({ userId, cart }) }],
+    });
 
-  // KAFKA
-  await producer.send({
-    topic: "payment-successful",
-    messages: [{ value: JSON.stringify({ userId, cart }) }],
-  });
-
-  setTimeout(() => {
-    return res.status(200).send("Payment successful");
-  }, 3000);
+    return res.status(200).json({
+      success: true,
+      message: "Payment successful",
+    });
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.use((err, req, res, next) => {
-  res.status(err.status || 500).send(err.message);
+  console.error(err);
+  res.status(500).json({ error: err.message });
 });
 
 app.listen(8000, () => {
