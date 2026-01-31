@@ -22,13 +22,15 @@ spec:
             - containerPort: 9092
             - containerPort: 9093
           env:
+            # REQUIRED for KRaft
             - name: CLUSTER_ID
               value: "7Dvn0OLMQo-bg4qmCmflVg"
 
+            # Correct numeric broker.id
             - name: KAFKA_NODE_ID
               valueFrom:
                 fieldRef:
-                  fieldPath: metadata.name
+                  fieldPath: metadata.annotations['controller.kubernetes.io/pod-index']
 
             - name: KAFKA_PROCESS_ROLES
               value: "broker,controller"
@@ -46,4 +48,7 @@ spec:
               value: "PLAINTEXT"
 
             - name: KAFKA_CONTROLLER_QUORUM_VOTERS
-              value: "0@kafka-0.kafka.microkafka.svc.cluster.local:9093,1@kafka-1.kafka.microkafka.svc.cluster.local:9093,2@kafka-2.kafka.microkafka.svc.cluster.local:9093"
+              value: |
+                0@kafka-0.kafka.microkafka.svc.cluster.local:9093,
+                1@kafka-1.kafka.microkafka.svc.cluster.local:9093,
+                2@kafka-2.kafka.microkafka.svc.cluster.local:9093
