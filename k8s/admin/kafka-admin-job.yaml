@@ -10,8 +10,8 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: kafka-admin
-          image: ashwinsai22/kafka-service:latest
-          imagePullPolicy: IfNotPresent
+          image: ashwinsai22/kafka-admin:latest
+          imagePullPolicy: Always
           env:
             - name: KAFKA_BROKERS
               value: kafka-0.kafka.microkafka.svc.cluster.local:9092,kafka-1.kafka.microkafka.svc.cluster.local:9092,kafka-2.kafka.microkafka.svc.cluster.local:9092
