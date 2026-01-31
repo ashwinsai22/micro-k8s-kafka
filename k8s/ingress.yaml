@@ -4,19 +4,18 @@ metadata:
   name: microkafka-ingress
   namespace: microkafka
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   ingressClassName: public
   tls:
     - hosts:
         - microkafka.bezawada.link
-      secretName: microkafka-tls   # 👈 AWS cert secret
+      secretName: microkafka-tls
   rules:
     - host: microkafka.bezawada.link
       http:
         paths:
-          - path: /(.*)
+          - path: /
             pathType: Prefix
             backend:
               service:
@@ -24,7 +23,7 @@ spec:
                 port:
                   number: 80
 
-          - path: /payment-service(/|$)(.*)
+          - path: /payment-service
             pathType: Prefix
             backend:
               service:
@@ -32,7 +31,7 @@ spec:
                 port:
                   number: 80
 
-          - path: /order-service(/|$)(.*)
+          - path: /order-service
             pathType: Prefix
             backend:
               service:
@@ -40,7 +39,7 @@ spec:
                 port:
                   number: 80
 
-          - path: /email-service(/|$)(.*)
+          - path: /email-service
             pathType: Prefix
             backend:
               service:
@@ -48,7 +47,7 @@ spec:
                 port:
                   number: 80
 
-          - path: /analytic-service(/|$)(.*)
+          - path: /analytic-service
             pathType: Prefix
             backend:
               service:
@@ -56,7 +55,7 @@ spec:
                 port:
                   number: 80
 
-          - path: /kafka-ui(/|$)(.*)
+          - path: /kafka-ui
             pathType: Prefix
             backend:
               service:

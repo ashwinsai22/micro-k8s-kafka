@@ -19,7 +19,10 @@ spec:
           ports:
             - containerPort: 8080
           env:
+            - name: SERVER_SERVLET_CONTEXT_PATH
+              value: /kafka-ui
+
             - name: KAFKA_CLUSTERS_0_NAME
               value: microkafka
             - name: KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS
-              value: kafka-0.kafka.microkafka.svc.cluster.local:9092
+              value: kafka.kafka.microkafka.svc.cluster.local:9092
