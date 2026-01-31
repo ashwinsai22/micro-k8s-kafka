@@ -20,9 +20,9 @@ const run = async () => {
 
     await admin.createTopics({
       topics: [
-        { topic: "payment-successful", numPartitions: 1, replicationFactor: 3 },
-        { topic: "order-successful", numPartitions: 1, replicationFactor: 3 },
-        { topic: "email-successful", numPartitions: 1, replicationFactor: 3 },
+        { topic: "payment-successful", numPartitions: 1, replicationFactor: 1 },
+        { topic: "order-successful", numPartitions: 1, replicationFactor: 1 },
+        { topic: "email-successful", numPartitions: 1, replicationFactor: 1 },
       ],
     });
 
