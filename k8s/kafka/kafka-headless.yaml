@@ -1,14 +1,15 @@
+# kafka-headless.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: kafka
-  namespace: kafka
+  namespace: microkafka
 spec:
   clusterIP: None
   selector:
     app: kafka
   ports:
-    - name: broker
+    - name: plaintext
       port: 9092
     - name: controller
       port: 9093

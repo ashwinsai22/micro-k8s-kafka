@@ -6,14 +6,18 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://microkafka.bezawada.link",
   })
 );
 app.use(express.json());
 
 const kafka = new Kafka({
   clientId: "payment-service",
-  brokers: ["localhost:9094", "localhost:9095", "localhost:9096"],
+brokers: [
+  "kafka-0.kafka.microkafka.svc.cluster.local:9092",
+  "kafka-1.kafka.microkafka.svc.cluster.local:9092",
+  "kafka-2.kafka.microkafka.svc.cluster.local:9092",
+],
 });
 
 const producer = kafka.producer();

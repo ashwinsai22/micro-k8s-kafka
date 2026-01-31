@@ -2,7 +2,7 @@ import { Kafka } from "kafkajs";
 
 const kafka = new Kafka({
   clientId: "kafka-service",
-  brokers: ["localhost:9094"],
+  brokers: ["kafka-0.kafka.microkafka.svc.cluster.local:9092"],
 });
 
 const admin = kafka.admin();
